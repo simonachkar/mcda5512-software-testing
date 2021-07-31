@@ -43,7 +43,7 @@ class User extends Component {
 
     render() {
         return (
-            <div className="user-container" key={this.props.name}>
+            <div className="user-container" key={this.state.email}>
                 <img alt={`${this.state.firstName} ${this.state.lastName}`} width={175} src={this.state.pictureURL} />
                 <div>
                     <h2>{this.state.firstName} {this.state.lastName}</h2>

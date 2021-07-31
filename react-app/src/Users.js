@@ -5,8 +5,8 @@ class Users extends Component {
     render() {
         return (
             <div>
-                {[1, 2, 3, 4].map(() => {
-                    return <User />
+                {[1, 2, 3, 4].map((index) => {
+                    return <User key={index} />
                 })}
             </div>
         )

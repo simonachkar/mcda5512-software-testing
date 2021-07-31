@@ -2,9 +2,9 @@ import React from 'react'
 
 const Title = () => {
     return (
-        <div>
+        <h1>
             Hello World!
-        </div>
+        </h1>
     )
 }
 
