@@ -46,7 +46,7 @@ class User extends Component {
             <div className="user-container" key={this.state.email}>
                 <img alt={`${this.state.firstName} ${this.state.lastName}`} width={175} src={this.state.pictureURL} />
                 <div>
-                    <h2>{this.state.firstName} {this.state.lastName}</h2>
+                    <h2 data-testid="user-name">{this.state.firstName} {this.state.lastName}</h2>
                     <p><b>Age: </b>{this.state.age}</p>
                     <p><b>Email: </b>{this.state.email}</p>
                     {this.state.isShowAddress ? <p><b>Address: </b>{this.state.city}, {this.state.country}</p> : undefined}
