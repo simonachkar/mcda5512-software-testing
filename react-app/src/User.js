@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { getRandomUser } from "./api";
 
 class User extends Component {
     constructor(props) {
@@ -18,10 +19,7 @@ class User extends Component {
     }
 
     fetchData() {
-        fetch("https://randomuser.me/api")
-            .then(response => {
-                return response.json()
-            })
+        getRandomUser()
             .then(response => {
                 // console.log(response.results[0]);
                 const data = response.results[0]
@@ -53,6 +51,7 @@ class User extends Component {
                 </div>
                 <div>
                     <button
+                        data-testid="user-btn"
                         onClick={() => this.setState({ isShowAddress: !this.state.isShowAddress })}
                         className={this.state.isShowAddress ? "btn-hide" : "btn-show"}
                     >
