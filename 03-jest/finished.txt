@@ -43,4 +43,15 @@ test('User should be Joe Doe', () => {
     )
 })
 
+// Test Regex
+test('There is no I in team', () => {
+    expect('team').not.toMatch(/I/i)
+})
+
+// Test Arrays
+test('asimon should be an admin', () => {
+    const admins = ['asimon', 'wneil', 'pdan']
+    expect(admins).toContain('asimon')
+})
+
 /** Check API Docs here -> https://jestjs.io/docs/expect */
