@@ -21,21 +21,19 @@ test('Should be truthy', () => {
 })
 
 // Test less and greater than
-test('Should be under 10 items nut more than 1 item', () => {
+test('Should be under 10 items but more than 1 item', () => {
     const qty = 7
     // ...
 })
 
 // Test getUser()
 test('User should be Joe Doe', () => {
-    // expect(functions.getUser()).toBe(
-    //     { firstName: 'Joe', lastName: 'Doe' }
-    // )
+
 })
 
 // Test Regex
 test('There is no I in team', () => {
-    // expect('team').not.toMatch(/I/)
+
 })
 
 // Test Arrays

@@ -30,7 +30,7 @@ test('Should be truthy', () => {
 })
 
 // Test less and greater than
-test('Should be under 10 items nut more than 1 item', () => {
+test('Should be under 10 items but more than 1 item', () => {
     const qty = 7
     expect(qty).toBeLessThan(10)
     expect(qty).toBeGreaterThan(1)
