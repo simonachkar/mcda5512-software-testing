@@ -8,5 +8,13 @@ A mini app that "validates" a name making sure it only contains English letters.
 ```
 npm install
 ```
-- To run the app: `npm run validate <name>`
-- To run tests: `npm run test`
+
+### To run the app: 
+```
+npm run validate <name>
+```
+
+### To run tests: 
+```
+`npm run test`
+```
