@@ -1,18 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Title from './Title'
-import { render } from '@testing-library/react'
+// import { render } from '@testing-library/react'
 
 test('renders <Title>', () => {
     const div = document.createElement('div')
     ReactDOM.render(<Title />, div)
     expect(div.querySelector('h1').textContent).toBe('Hello World!')
 
-
     // Using @testing-library/react
-    const { getByRole } = render(<Title />)
-    const h1 = getByRole('heading')
-    expect(h1.textContent).toBe('Hello World!')
+    // const { getByRole } = render(<Title />)
+    // const h1 = getByRole('heading')
+    // expect(h1.textContent).toBe('Hello World!')
 })
 
 

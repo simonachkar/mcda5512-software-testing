@@ -29,15 +29,21 @@ jest.mock('./api')
 
 test('renders <User>', async () => {
     getRandomUser.mockResolvedValueOnce(mockUser)
-    const { getByText, getByTestId, debug } = render(<User />)
+    const { getByText, getByTestId, queryByText, debug } = render(<User />)
     await waitFor(() => expect(getRandomUser).toHaveBeenCalledTimes(1))
     expect(getByText('Simon Achkar')).toBeTruthy()
 
-
-    const button = getByTestId('user-btn')
+    const button = getByTestId("user-btn")
     expect(button.innerHTML).toBe("Show Address")
     fireEvent.click(button)
     expect(button.innerHTML).toBe("Hide Address")
+    expect(getByText('Halifax, Canada')).toBeTruthy()
+    fireEvent.click(button)
+    // expect(getByText('Halifax, Canada')).toBeFalsy()
+    expect(queryByText('Halifax, Canada')).toBeFalsy()
+
+    // cleanup
+    getRandomUser.mockReset()
 })
 
 
