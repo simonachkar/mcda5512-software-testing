@@ -2,13 +2,12 @@ const sum = (a, b) => a + b
 const substract = (a, b) => a - b
 
 // Test sum function
-console.log(`Testing sum()`)
 let result = sum(2, 3)
 let expected = 5
 if (result !== expected) {
     throw new Error(`Testing Failed: ${result} is not equal to ${expected}`)
 } else {
-    console.log(`Testing Passed`)
+    console.log(`Testing Passed: Testing sum()`)
 }
 
 // Test substract function
