@@ -15,4 +15,3 @@ const fight = (boxer1, boxer2) => {
 }
 
 module.exports = fight
-

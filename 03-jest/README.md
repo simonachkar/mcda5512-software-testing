@@ -9,7 +9,7 @@ npm install
 ```
 
 ## Running tests
-To test make sure you complete the code `functions.test.js` (you can refer to `finished.txt`). Then run:
+To test make sure you complete the code `functions.test.js` (you can refer to `_finished.txt`). Then run:
 ```
 npm run test
 ```
