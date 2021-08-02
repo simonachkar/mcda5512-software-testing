@@ -27,5 +27,3 @@ test('Testing Description 3', () => {
 ## Rubric
 - 3 pts per test (9 pts)
 - 1 pt for using **mocking**
-
-

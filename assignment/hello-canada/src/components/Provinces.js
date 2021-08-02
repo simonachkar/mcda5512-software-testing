@@ -1,13 +1,37 @@
 import React, { Component } from "react"
 import Province from "./Province"
 
-import provinces from '../data/provinces-data'
+import { getProvincesData } from "../api";
 
 class Provinces extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            provinces: []
+        }
+        this.fetchData = this.fetchData.bind(this);
+    }
+
+    fetchData() {
+        getProvincesData()
+            .then(response => {
+                // console.log(response);
+                this.setState({
+                    provinces: response
+                })
+            });
+    }
+
+    componentDidMount() {
+        this.fetchData()
+    }
+
+
     render() {
         return (
             <div>
-                {provinces.map(province => {
+                {this.state.provinces.map(province => {
                     return <Province key={province.name} name={province.name} capital={province.capital} flagUrl={province.flagUrl} />
                 })}
             </div>
