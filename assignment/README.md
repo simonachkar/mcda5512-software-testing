@@ -33,6 +33,6 @@ If at any time you needed help in this assignment please don't hesitate to email
 
 ## About the app 
 
-You can learn all about the app [here]("./hello-canada/README.md)
+You can learn all about the app [here](hello-canada/README.md)
 
 
