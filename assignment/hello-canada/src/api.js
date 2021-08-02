@@ -13,4 +13,13 @@ const getTerritories = () => {
     })
 }
 
-export { getProvincesData, getTerritories };
+const getCovid19Info = () => {
+    return new Promise((resolve, reject) => {
+        fetch("https://api.covid19tracker.ca/summary")
+            .then(response => {
+                resolve(response.json())
+            })
+    })
+}
+
+export { getProvincesData, getTerritories, getCovid19Info };

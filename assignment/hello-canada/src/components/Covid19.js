@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { getCovid19Info } from "../api";
 
 class Covid19 extends Component {
     constructor(props) {
@@ -15,10 +16,7 @@ class Covid19 extends Component {
     }
 
     fetchData() {
-        fetch("https://api.covid19tracker.ca/summary")
-            .then(response => {
-                return response.json()
-            })
+        getCovid19Info()
             .then(response => {
                 // console.log(response);
                 this.setState({
@@ -45,16 +43,9 @@ class Covid19 extends Component {
                 <p><b>Total Vaccinated: </b>{this.state.totalVaccinated}</p>
                 <p><b>Change Cases: </b>{this.state.changeCases}</p>
                 <p><b>Change Deaths: </b>{this.state.changeDeaths}</p>
-                {/* <button onClick={() => this.fetchData()}> Fetch Data </button> */}
             </div>
         )
     }
 }
 
 export default Covid19;
-
-/**
- * Topics you might also like:
- *      - JS Promises -> https://www.w3schools.com/js/js_promise.asp
- *      - Components Lifecycle -> https://reactjs.org/docs/react-component.html#the-component-lifecycle
- */
