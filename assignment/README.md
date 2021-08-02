@@ -27,3 +27,12 @@ test('Testing Description 3', () => {
 ## Rubric
 - 3 pts per test (9 pts)
 - 1 pt for using **mocking**
+
+## Asking for help
+If at any time you needed help in this assignment please don't hesitate to email me (simon@simonachkar.com). I'll try my best to answer asap.
+
+## About the app 
+
+You can learn all about the app [here]("./hello-canada/README.md)
+
+
