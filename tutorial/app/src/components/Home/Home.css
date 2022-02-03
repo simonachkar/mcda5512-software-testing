@@ -56,23 +56,6 @@
   .login-button:hover {
     background-color: #9ae8fd;
   }
-
-  .logout-button {
-    background-color: #4b5d62;
-    color: #fff;
-    border-width: 0;
-    border-radius: 4px;
-    padding: 1rem 1rem;
-    width: 300px;
-    font-size: x-large;
-    margin: 2rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .logout-button:hover {
-    background-color: #8fb2bd;
-  }
   
   @keyframes App-logo-spin {
     from {

@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './Home.css';
 import Toggle from './Toggle';
 import UserContext from '../../context';
+import Profile from './Profile';
 
 const Home = () => {
     const [isDark, toggleDark] = useState(true)
@@ -11,24 +12,26 @@ const Home = () => {
 
     return (
         <div className={isDark ? "app-dark" : "app-light"}>
-            <Toggle onClick={() => toggleDark(!isDark)} />
-            <img src={logo} className="App-logo" alt="logo" />
-            {user ?
-                <div>
-                    <p>Welcome <code>{user.name}</code>.</p>
-                    <p>Your email is <code>{user.email}.</code></p>
-                    <p>And you are from <code>{user.hometown}.</code></p>
-                </div>
+
+            {!user ?
+                <Profile />
                 :
-                <p>
-                    Welcome <code>human</code>. Login to display your information.
-                </p>
-            }
-            {user ?
-                <button to="/logout" className="logout-button" onClick={() => loginUser(null)}>Logout</button> :
-                <button className="login-button">
-                    <Link to="/login">Login</Link>
-                </button>
+                <>
+                    <Toggle onClick={() => toggleDark(!isDark)} />
+                    <img src={logo} className="App-logo" alt="logo" />
+
+                    <div>
+                        <p>Welcome <code>{user.name}</code>.</p>
+                        <p>Your email is <code>{user.email}.</code></p>
+                        <p>And you are from <code>{user.hometown}.</code></p>
+                    </div>
+                    {user ?
+                        <button to="/logout" className="logout-button" onClick={() => loginUser(null)}>Logout</button> :
+                        <button className="login-button">
+                            <Link to="/login">Login</Link>
+                        </button>
+                    }
+                </>
             }
         </div>
     );
