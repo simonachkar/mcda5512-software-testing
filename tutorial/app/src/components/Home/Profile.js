@@ -8,7 +8,16 @@ const Profile = ({ data }) => {
 
     return (
         <div style={{ paddingBottom: "50px" }}>
-            <button to="/logout" className="logout-button" onClick={() => loginUser(null)}>Logout</button>
+            <button
+                to="/logout"
+                className="logout-button"
+                onClick={() => {
+                    localStorage.removeItem('user');
+                    loginUser(null)
+                }}
+            >
+                Logout
+            </button>
 
             <h1>{data.first_name} {data.last_name}</h1>
             <h2>{data.email}</h2>

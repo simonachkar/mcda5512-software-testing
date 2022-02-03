@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Link } from "react-router-dom";
 import logo from './logo.svg';
 import './Home.css';
@@ -9,6 +9,10 @@ import Profile from './Profile';
 const Home = () => {
     const [isDark, toggleDark] = useState(true)
     const { user, loginUser } = useContext(UserContext)
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) loginUser(JSON.parse(localStorage.getItem('user')))
+    }, [])
 
     return (
         <div className={isDark ? "app-dark" : "app-light"}>

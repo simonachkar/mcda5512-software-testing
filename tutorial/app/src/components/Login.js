@@ -34,13 +34,6 @@ function Login() {
             setErrorMessage("Password is empty or invalid")
         } else {
             setErrorMessage("")
-            // console.log(firstName, lastName, email, password)
-            const user = {
-                firstName,
-                lastName,
-                email,
-                password
-            }
             axios.post('/register', {
                 first_name: firstName,
                 last_name: lastName,
@@ -48,8 +41,14 @@ function Login() {
                 password
             })
                 .then((res) => {
+                    // res = {first_name: '...', last_name: '...', email: '...', token: '...'}
                     axios.get('/data', { params: { email: res.data.email }, headers: { 'x-access-token': res.data.token } })
-                        .then((res) => loginUser(res.data))
+                        .then((res) => {
+                            // /data response
+                            const data = { ...res.data, expiry: new Date().getTime() + 1.08e+7 }
+                            localStorage.setItem('user', JSON.stringify(data))
+                            loginUser(res.data)
+                        })
                         .catch(err => {
                             console.log(err)
                             setErrorMessage("Fetching Data Error")
@@ -58,9 +57,8 @@ function Login() {
                 })
                 .catch(err => {
                     console.log(err)
-                    setErrorMessage("Signup Error")
+                    setErrorMessage("Signup Error: " + err)
                 })
-
         }
     }
 
