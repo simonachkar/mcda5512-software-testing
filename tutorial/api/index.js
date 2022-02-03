@@ -10,9 +10,13 @@ const app = express();
 
 app.use(express.json());
 
-app.listen(3001, async () => {
-    console.log("Server running on port 3000");
+app.listen(3001, () => {
+    console.log("Server running on port 3001");
 });
+
+app.get('/ping', (req, res) => {
+    return res.status(200).json("Server running on port 3001");
+})
 
 // Register route
 app.post("/register", async (req, res) => {

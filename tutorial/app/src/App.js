@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios"
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,6 +12,15 @@ import Login from './components/Login'
 
 function App() {
   const [user, loginUser] = useState(null)
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await axios.get('/ping')
+      console.log(res.data)
+    }
+    fetchData();
+  }, [])
+
   return (
     <UserContext.Provider value={{ user, loginUser }}>
       <Router>
