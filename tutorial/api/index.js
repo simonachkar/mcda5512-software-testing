@@ -46,7 +46,7 @@ app.post("/register", async (req, res) => {
         const data = generateData();
 
         // Create user in our database
-        const user = await db.add({
+        const userRes = await db.add({
             first_name,
             last_name,
             email: email.toLowerCase(),
@@ -54,14 +54,24 @@ app.post("/register", async (req, res) => {
             ...data
         });
 
+        const user = userRes[0]
+
         // Create token
         const token = signJWT(email)
 
         // Save user token
         user.token = token;
 
+        // Delete password and data values before returning user
+        const userValue = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            token: user.token
+        }
+
         // Return new user
-        return res.status(201).json({ email: email });
+        return res.status(201).json(userValue);
     } catch (err) {
         console.log(err);
         return res.status(500).send("Server error");

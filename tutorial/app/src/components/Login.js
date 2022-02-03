@@ -1,5 +1,6 @@
 import { useState, useRef, useContext } from 'react'
 import { Navigate } from "react-router-dom"
+import axios from "axios"
 import './Login.css';
 import UserContext from '../context';
 
@@ -33,14 +34,33 @@ function Login() {
             setErrorMessage("Password is empty or invalid")
         } else {
             setErrorMessage("")
-            // console.log(name, email, password)
+            // console.log(firstName, lastName, email, password)
             const user = {
                 firstName,
                 lastName,
                 email,
                 password
             }
-            loginUser(user)
+            axios.post('/register', {
+                first_name: firstName,
+                last_name: lastName,
+                email,
+                password
+            })
+                .then((res) => {
+                    axios.get('/data', { params: { email: res.data.email }, headers: { 'x-access-token': res.data.token } })
+                        .then((res) => loginUser(res.data))
+                        .catch(err => {
+                            console.log(err)
+                            setErrorMessage("Fetching Data Error")
+                        })
+
+                })
+                .catch(err => {
+                    console.log(err)
+                    setErrorMessage("Signup Error")
+                })
+
         }
     }
 

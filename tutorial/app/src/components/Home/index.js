@@ -13,18 +13,18 @@ const Home = () => {
     return (
         <div className={isDark ? "app-dark" : "app-light"}>
 
-            {!user ?
-                <Profile />
+            {user ?
+                <Profile data={user} />
                 :
                 <>
                     <Toggle onClick={() => toggleDark(!isDark)} />
-                    <img src={logo} className="App-logo" alt="logo" />
+                    <img src={logo} className="App-logo" alt="logo" width={300} />
 
-                    <div>
-                        <p>Welcome <code>{user.name}</code>.</p>
-                        <p>Your email is <code>{user.email}.</code></p>
-                        <p>And you are from <code>{user.hometown}.</code></p>
-                    </div>
+                    <h3>
+                        Welcome <code>student</code>.
+                        <p>Login to see your grades.</p>
+                    </h3>
+
                     {user ?
                         <button to="/logout" className="logout-button" onClick={() => loginUser(null)}>Logout</button> :
                         <button className="login-button">
