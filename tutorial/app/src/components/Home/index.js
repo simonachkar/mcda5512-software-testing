@@ -10,13 +10,13 @@ const Home = () => {
     const [isDark, toggleDark] = useState(true)
     const { user, loginUser } = useContext(UserContext)
 
+    // Check if localStorage has an object called 'user', than login that user in the 
     useEffect(() => {
         if (localStorage.getItem('user')) loginUser(JSON.parse(localStorage.getItem('user')))
-    }, [])
+    }, [loginUser])
 
     return (
         <div className={isDark ? "app-dark" : "app-light"}>
-
             {user ?
                 <Profile data={user} />
                 :

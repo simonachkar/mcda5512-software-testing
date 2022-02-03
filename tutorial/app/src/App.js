@@ -14,6 +14,7 @@ function App() {
   const [user, loginUser] = useState(null)
 
   useEffect(() => {
+    // Just testing the connection to the api
     async function fetchData() {
       const res = await axios.get('/ping')
       console.log(res.data)

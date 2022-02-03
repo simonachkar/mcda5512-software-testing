@@ -1,23 +1,10 @@
-import { useContext } from 'react'
-import PropTypes from 'prop-types';
-import UserContext from '../../context';
+import Logout from './Logout';
 import './Profile.css';
 
 const Profile = ({ data }) => {
-    const { loginUser } = useContext(UserContext)
-
     return (
         <div style={{ paddingBottom: "50px" }}>
-            <button
-                className="logout-button"
-                onClick={() => {
-                    localStorage.removeItem('user');
-                    loginUser(null)
-                }}
-            >
-                Logout
-            </button>
-
+            <Logout />
             <h1>{data.first_name} {data.last_name}</h1>
             <h2>{data.email}</h2>
 
@@ -93,29 +80,6 @@ const Profile = ({ data }) => {
 
         </div>
     );
-}
-
-Profile.propTypes = {
-    data: PropTypes.object.isRequired
-}
-
-Profile.defaultProps = {
-    data: {
-        first_name: "Simon",
-        last_name: "Achkar",
-        email: "admin@smu.ca",
-        g1a: "61",
-        g1b: "43",
-        g1c: "40",
-        g1d: "100",
-        g2a: "100",
-        g2b: "78",
-        g2c: "54",
-        g3a: "45",
-        g3b: "86",
-        g4a: "82",
-        g4b: "43"
-    }
 }
 
 export default Profile;
