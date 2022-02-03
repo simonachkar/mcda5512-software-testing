@@ -9,7 +9,6 @@ const Profile = ({ data }) => {
     return (
         <div style={{ paddingBottom: "50px" }}>
             <button
-                to="/logout"
                 className="logout-button"
                 onClick={() => {
                     localStorage.removeItem('user');
