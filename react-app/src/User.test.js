@@ -29,7 +29,7 @@ jest.mock('./api')
 
 test('renders <User>', async () => {
     getRandomUser.mockResolvedValueOnce(mockUser)
-    const { getByText, getByTestId, queryByText, debug } = render(<User />)
+    const { getByText, getByTestId, queryByText } = render(<User />)
     await waitFor(() => expect(getRandomUser).toHaveBeenCalledTimes(1))
     expect(getByText('Simon Achkar')).toBeTruthy()
 

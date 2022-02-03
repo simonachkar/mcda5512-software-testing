@@ -6,7 +6,7 @@ At least one of those functionalities should test React, you can choose whether 
 
 ## Format 
 
-- Please put all your tests in a file named `<your-a-number>_mcda5550.test.js` 
+- Please put all your tests in a file named `<your-a-number>_<your-name>_mcda5550.test.js` 
 - Submit **only that file**
 - Put all your three `test()` in the file and make sure you explain exactly what you are testing
 ```

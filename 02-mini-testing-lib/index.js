@@ -1,3 +1,4 @@
+// Two simple methods: sum & substract
 const sum = (a, b) => a + b
 const substract = (a, b) => a - b
 
@@ -19,7 +20,8 @@ function test(title, callback) {
 
 }
 
-// Call the test function
+// Call the test function 
+// and wrap it around the code that tests the substract function
 
 
 
