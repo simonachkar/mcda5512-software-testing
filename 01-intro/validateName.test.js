@@ -1,39 +1,43 @@
-const { validateName } = require('./validateName')
+const validateName = require("./validateName");
 
-// ======== Check true ========
-test('checking name: Simon', () => {
-    expect(validateName('Simon')).toBe(true)
-});
+describe("Name validation tests", () => {
+  test("Valid name: Simon", () => {
+    expect(validateName("Simon")).toBe(true);
+  });
 
-test('checking name: Neil', () => {
-    expect(validateName('Neil')).toBe(true)
-});
+  test("Valid name: Neil", () => {
+    expect(validateName("Neil")).toBe(true);
+  });
 
-// ======== Check false ======== 
-test('checking name: Simon123', () => {
-    expect(validateName('Simon123')).toBe(false)
-});
+  test("Valid name: Dan", () => {
+    expect(validateName("Dan")).toBe(true);
+  });
 
-test('checking name: Jake-Paul', () => {
-    expect(validateName('Jake-Paul')).toBe(false)
-});
+  test("Invalid name: Simon123", () => {
+    expect(validateName("Simon123")).toBe(false);
+  });
 
-test('checking name: ', () => {
-    expect(validateName('')).toBe(false)
-});
+  test("Invalid name: Jake-Paul", () => {
+    expect(validateName("Jake-Paul")).toBe(false);
+  });
 
-test('checking name: Renée', () => {
-    expect(validateName('Renée')).toBe(false)
-});
+  test("Invalid name: empty string", () => {
+    expect(validateName("")).toBe(false);
+  });
 
-test('checking name: Sørina', () => {
-    expect(validateName('Sørina')).toBe(false)
-});
+  test("Invalid name: Renée (accented character)", () => {
+    expect(validateName("Renée")).toBe(false);
+  });
 
-test('checking name: Юрий', () => {
-    expect(validateName('Юрий')).toBe(false)
-});
+  test("Invalid name: Sørina (special character)", () => {
+    expect(validateName("Sørina")).toBe(false);
+  });
 
-test('checking name: غسان', () => {
-    expect(validateName('غسان')).toBe(false)
+  test("Invalid name: Юрий (Cyrillic script)", () => {
+    expect(validateName("Юрий")).toBe(false);
+  });
+
+  test("Invalid name: غسان (Arabic script)", () => {
+    expect(validateName("غسان")).toBe(false);
+  });
 });

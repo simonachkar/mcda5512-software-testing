@@ -1,10 +1,10 @@
-const { validateName } = require('./validateName')
+const validateName = require("./validateName");
 
-const response = validateName(process.argv[2])
+const nameToValidate = process.argv[2];
+const response = validateName(nameToValidate);
 
 if (response) {
-    console.log(`✅ This name is valid`)
+  console.log(`✅ The name "${nameToValidate}" is valid.`);
 } else {
-    console.log(`❌ This name is NOT valid`)
+  console.log(`❌ The name "${nameToValidate}" is NOT valid.`);
 }
-
