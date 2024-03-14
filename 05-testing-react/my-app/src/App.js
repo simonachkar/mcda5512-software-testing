@@ -1,6 +1,6 @@
-import './App.css';
-import Title from './Title';
-import Users from './Users';
+import "./App.css";
+import Title from "./components/title/title";
+import Users from "./components/users-list/users-list";
 
 function App() {
   return (
