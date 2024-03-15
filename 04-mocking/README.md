@@ -1,15 +1,26 @@
-# Mocking
+# Mocking (Weather Service with Jest Testing)
 
-An example about Mocking
+This project demonstrates how to use mocking to test a weather service function that fetches temperature data from the OpenWeatherMap API using Jest.
 
-## Getting started
-Make sure you're in `04-mocking` directory, and then run:
-```
+## Project Structure
+
+- `weatherService.js`: Contains the `getTemperature` function that fetches the current temperature for a given city using the OpenWeatherMap API.
+- `weatherService.test.js`: Contains Jest tests for the `getTemperature` function, including mocking the `fetch` function used for making API requests.
+
+## Getting Started
+
+To get started with this project, make sure you're in the directory containing the project files, and then run:
+
+```bash
 npm install
 ```
 
-## Running tests
-To test make sure you complete the code `fight.test.js` (you can refer to `_finished.txt`). Then run:
+### Running Tests
+
+To run the tests, use the following command:
+
+```bash
+npm test
 ```
-npm run test
-```
+
+This will execute the tests defined in weatherService.test.js using Jest. Remember the project focuses on mocking, and the directory is 04-mocking.
