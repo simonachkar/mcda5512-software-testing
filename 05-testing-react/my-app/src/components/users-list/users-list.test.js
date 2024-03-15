@@ -12,6 +12,3 @@ test("renders <Users>", async () => {
   const userNames = screen.getAllByTestId("user-name");
   expect(userNames.length).toBe(5);
 });
-
-// Check API Docs for React Testing Library here -> https://testing-library.com/docs/react-testing-library/intro/
-// Tutorial here -> https://www.robinwieruch.de/react-testing-library

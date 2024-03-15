@@ -1,8 +1,5 @@
-// Use debug() to get a view of the component
-import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import User from "./user";
-import { screen } from "@testing-library/react";
 
 test("renders user details correctly", () => {
   const userProps = {
