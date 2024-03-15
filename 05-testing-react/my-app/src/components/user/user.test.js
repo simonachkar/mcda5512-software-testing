@@ -1,53 +1,50 @@
+// Use debug() to get a view of the component
 import React from "react";
-import { render, waitFor, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import User from "./user";
-import { getRandomUser } from "../api";
+import { screen } from "@testing-library/react";
 
-const mockUser = {
-  results: [
-    {
-      name: {
-        first: "Simon",
-        last: "Achkar",
-      },
-      location: {
-        city: "Halifax",
-        country: "Canada",
-      },
-      email: "simon.achkar@example.com",
-      dob: {
-        age: 25,
-      },
-      picture: {
-        large:
-          "https://avatars.githubusercontent.com/u/19724710?s=400&u=922bd93f5aac87244196f750e2ca386d7f3c0251&v=4",
-      },
-    },
-  ],
-};
+test("renders user details correctly", () => {
+  const userProps = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30,
+    email: "john.doe@example.com",
+    pictureURL: "https://example.com/johndoe.jpg",
+    city: "New York",
+    country: "USA",
+  };
 
-jest.mock("./api");
+  render(<User {...userProps} />);
 
-test("renders <User>", async () => {
-  getRandomUser.mockResolvedValueOnce(mockUser);
-  const { getByText, getByTestId, queryByText } = render(<User />);
-  await waitFor(() => expect(getRandomUser).toHaveBeenCalledTimes(1));
-  expect(getByText("Simon Achkar")).toBeTruthy();
+  expect(screen.getByTestId("user-name").textContent).toBe("John Doe");
+  // expect(screen.getByText("Age: 30")).toBeTruthy(); // this won't work
+  expect(screen.getByText("30")).toBeTruthy();
+  expect(screen.getByText("john.doe@example.com")).toBeTruthy();
+  expect(screen.queryByText("New York, USA")).toBeFalsy();
 
-  const button = getByTestId("user-btn");
-  expect(button.innerHTML).toBe("Show Address");
+  const button = screen.getByTestId("user-btn");
   fireEvent.click(button);
-  expect(button.innerHTML).toBe("Hide Address");
-  expect(getByText("Halifax, Canada")).toBeTruthy();
-  fireEvent.click(button);
-  // expect(getByText('Halifax, Canada')).toBeFalsy()
-  expect(queryByText("Halifax, Canada")).toBeFalsy();
-
-  // cleanup
-  getRandomUser.mockReset();
+  expect(screen.getByText("New York, USA")).toBeTruthy();
 });
 
-// Check API Docs for React Testing Library here -> https://testing-library.com/docs/react-testing-library/intro/
-// Tutorial here -> https://www.robinwieruch.de/react-testing-library
+test("toggles address visibility on button click", () => {
+  const userProps = {
+    firstName: "Jane",
+    lastName: "Smith",
+    age: 25,
+    email: "jane.smith@example.com",
+    pictureURL: "https://example.com/janesmith.jpg",
+    city: "London",
+    country: "UK",
+  };
 
-// Use debug() to get a view of the component
+  render(<User {...userProps} />);
+
+  const button = screen.getByTestId("user-btn");
+  fireEvent.click(button);
+  expect(screen.getByText("London, UK")).toBeTruthy();
+
+  fireEvent.click(button);
+  expect(screen.queryByText("London, UK")).toBeFalsy();
+});

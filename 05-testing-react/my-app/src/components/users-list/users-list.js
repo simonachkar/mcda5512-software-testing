@@ -8,10 +8,8 @@ const UsersList = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      console.log("hi");
       try {
         const userData = await getRandomUser(5);
-        console.log(userData);
         const users = userData.results;
 
         const fetchedUsers = users.map((user) => {

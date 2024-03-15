@@ -1,11 +1,16 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import Users from "./users-list";
+import { render, screen, waitFor } from "@testing-library/react";
+import UsersList from "./users-list";
 
-test("renders <Users>", () => {
-  const { getAllByTestId } = render(<Users />);
-  const userNames = getAllByTestId("user-name");
-  expect(userNames.length).toBe(4);
+test("renders <Users>", async () => {
+  render(<UsersList />);
+
+  await waitFor(() => {
+    expect(screen.queryByText("Loading users...", { exact: false })).toBeNull();
+  });
+
+  const userNames = screen.getAllByTestId("user-name");
+  expect(userNames.length).toBe(5);
 });
 
 // Check API Docs for React Testing Library here -> https://testing-library.com/docs/react-testing-library/intro/
