@@ -1,33 +1,49 @@
-const { getTemperature } = require("./weatherService");
+const { getTemperature } = require('./weatherService');  // Import your module
+global.fetch = jest.fn(); // Mock the global fetch function
 
-global.fetch = jest.fn();
-
-describe("Weather Service Tests", () => {
+describe('getTemperature', () => {
+  // Clear previous mocks before each test
   beforeEach(() => {
     fetch.mockClear();
   });
 
-  test("Successfully fetches temperature", async () => {
-    fetch.mockResolvedValue({
-      json: () =>
-        Promise.resolve({
-          main: {
-            temp: 25,
-          },
-        }),
-    });
+  it('should return the temperature for a given city and unit', async () => {
+    // Define the fake response for fetch
+    const fakeResponse = {
+      json: jest.fn().mockResolvedValue({
+        main: { temp: 22 },  // Fake temperature data
+      }),
+    };
 
-    const temperature = await getTemperature("London");
-    expect(temperature).toBe(25);
-    expect(fetch).toHaveBeenCalledTimes(1);
+    // Mock fetch to return the fake response
+    fetch.mockResolvedValue(fakeResponse);
+
+    // Fake data
+    const city = 'Halifax';
+    const unit = 'metric'; 
+    const apiKey = 'anything';
+
+    // Call the function with parameters
+    const temperature = await getTemperature(city, unit, apiKey);
+
+    // Assert the returned temperature value
+    expect(temperature).toBe(22);  
+
+    // Assert fetch was called with the correct URL, including the city, unit, and apiKey
+    expect(fetch).toHaveBeenCalledWith(  
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
+    );
   });
 
-  test("Throws error when API call fails", async () => {
-    fetch.mockRejectedValue(new Error("API call failed"));
+  it('should throw an error when fetching temperature fails', async () => {
+    // Simulate a failure for the fetch request
+    fetch.mockRejectedValue(new Error('Failed to fetch'));
 
-    await expect(getTemperature("London")).rejects.toThrow(
-      "Failed to fetch temperature"
-    );
-    expect(fetch).toHaveBeenCalledTimes(1);
+    const city = 'Halifax';
+    const unit = 'metric'; 
+    const apiKey = 'anything';
+
+    // Call the function and assert that it throws the correct error
+    await expect(getTemperature(city, unit, apiKey)).rejects.toThrow('Failed to fetch');
   });
 });
