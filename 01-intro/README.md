@@ -1,6 +1,6 @@
 # Introduction to Unit Testing (using JavaScript)
 
-This is a simple application demonstrating the basics of unit testing in JavaScript. It validates whether a given name contains only English letters.
+This is a simple application demonstrating the basics of unit testing in JavaScript (usine Jest). It validates whether a given name contains only English letters.
 
 ## Setup
 

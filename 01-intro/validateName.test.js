@@ -1,6 +1,6 @@
 const validateName = require("./validateName");
 
-describe("Name validation tests", () => {
+describe("Valid names:", () => {
   test("Valid name: Simon", () => {
     expect(validateName("Simon")).toBe(true);
   });
@@ -12,7 +12,9 @@ describe("Name validation tests", () => {
   test("Valid name: Dan", () => {
     expect(validateName("Dan")).toBe(true);
   });
+});
 
+describe("Invalid names:", () => {
   test("Invalid name: Simon123", () => {
     expect(validateName("Simon123")).toBe(false);
   });
