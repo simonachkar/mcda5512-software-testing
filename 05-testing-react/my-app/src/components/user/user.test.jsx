@@ -45,3 +45,25 @@ test("toggles address visibility on button click", () => {
   fireEvent.click(button);
   expect(screen.queryByText("London, UK")).toBeFalsy();
 });
+
+test("updates button label when toggling address", () => {
+  render(
+    <User
+      firstName="Sam"
+      lastName="Lee"
+      age={28}
+      email="sam.lee@example.com"
+      pictureURL="https://example.com/samlee.jpg"
+      city="Toronto"
+      country="Canada"
+    />
+  );
+
+  const button = screen.getByTestId("user-btn");
+
+  expect(button).toHaveTextContent("Show Address");
+  fireEvent.click(button);
+  expect(button).toHaveTextContent("Hide Address");
+  fireEvent.click(button);
+  expect(button).toHaveTextContent("Show Address");
+});

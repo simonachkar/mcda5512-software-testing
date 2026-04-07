@@ -26,3 +26,25 @@ test("renders <Users>", async () => {
   const userNames = screen.getAllByTestId("user-name");
   expect(userNames.length).toBe(5);
 });
+
+test("calls getRandomUser with 5", async () => {
+  getRandomUser.mockResolvedValue({ results: mockUsers });
+
+  render(<UsersList />);
+
+  await waitFor(() => {
+    expect(getRandomUser).toHaveBeenCalledWith(5);
+  });
+});
+
+test("stops loading and renders no users when fetch fails", async () => {
+  getRandomUser.mockRejectedValue(new Error("Failed"));
+
+  render(<UsersList />);
+
+  await waitFor(() => {
+    expect(screen.queryByText("Loading users...")).toBeNull();
+  });
+
+  expect(screen.queryAllByTestId("user-name")).toHaveLength(0);
+});
