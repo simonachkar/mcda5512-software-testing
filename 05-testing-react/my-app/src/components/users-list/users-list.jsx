@@ -27,6 +27,7 @@ const UsersList = () => {
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching users:", error);
+        setIsLoading(false);
       }
     };
 
@@ -40,7 +41,7 @@ const UsersList = () => {
   return (
     <div>
       {users.map((user, index) => (
-        <User key={index} {...user} />
+        <User key={user.email} {...user} />
       ))}
     </div>
   );
