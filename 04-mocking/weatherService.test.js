@@ -1,15 +1,21 @@
 const { getTemperature } = require("./weatherService"); // Import your module
+const originalFetch = global.fetch;
 global.fetch = jest.fn(); // Mock the global fetch function
 
 describe("getTemperature", () => {
   // Clear previous mocks before each test
   beforeEach(() => {
-    fetch.mockClear();
+    fetch.mockReset();
+  });
+
+  afterAll(() => {
+    global.fetch = originalFetch;
   });
 
   it("should return the temperature for a given city and unit", async () => {
     // Setup the fake response to simulate a successful call
     const fakeResponse = {
+      ok: true,
       json: jest.fn().mockResolvedValue({
         main: { temp: 22 }, // Fake temperature data
       }),
@@ -32,6 +38,7 @@ describe("getTemperature", () => {
 
   it("should call fetch once with the correct URL", async () => {
     fetch.mockResolvedValue({
+      ok: true,
       json: jest.fn().mockResolvedValue({ main: { temp: 22 } }),
     });
 
@@ -58,5 +65,17 @@ describe("getTemperature", () => {
     await expect(getTemperature(city, unit, apiKey)).rejects.toThrow(
       "Failed to fetch"
     );
+  });
+
+  it("should throw an error when the API returns a non-OK response", async () => {
+    fetch.mockResolvedValue({
+      ok: false,
+      status: 404,
+      json: jest.fn(),
+    });
+
+    await expect(
+      getTemperature("Halifax", "metric", "anything")
+    ).rejects.toThrow("Weather API error: 404");
   });
 });
