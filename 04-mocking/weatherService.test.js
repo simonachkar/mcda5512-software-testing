@@ -42,9 +42,10 @@ describe("getTemperature", () => {
       json: jest.fn().mockResolvedValue({ main: { temp: 22 } }),
     });
 
-    const city = "Halifax",
-      unit = "metric",
-      apiKey = "anything";
+    const city = "Halifax";
+    const unit = "metric";
+    const apiKey = "anything";
+
     await getTemperature(city, unit, apiKey);
 
     expect(fetch).toHaveBeenCalledWith(

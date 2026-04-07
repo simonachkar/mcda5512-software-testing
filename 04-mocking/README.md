@@ -6,6 +6,7 @@ This project demonstrates how to use mocking to test a weather service function 
 
 - `weatherService.js`: Contains the `getTemperature` function that fetches the current temperature for a given city using the OpenWeatherMap API.
 - `weatherService.test.js`: Contains Jest tests for the `getTemperature` function, including mocking the `fetch` function used for making API requests.
+- `spying.test.js`: Introduces the concept of spying (vs mocking).
 
 ## Getting Started
 
